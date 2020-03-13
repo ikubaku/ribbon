@@ -17,6 +17,9 @@ use hal::i2c::{BlockingI2c, DutyCycle, Mode};
 use sh1106::prelude::*;
 use sh1106::Builder;
 
+mod at8563;
+use at8563::At8563;
+
 #[entry]
 fn main() -> ! {
     let dp = stm32::Peripherals::take().unwrap();
@@ -50,6 +53,7 @@ fn main() -> ! {
     );
 
     let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(i2c).into();
+    let mut rtc: At8563<_> = At8563::new(i2c);
 
     disp.init().unwrap();
     disp.flush().unwrap();
