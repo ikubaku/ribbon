@@ -2,6 +2,12 @@
 # It is not intended for manual editing.
 [[package]]
 name = "aligned"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d39da9b88ae1a81c03c9c082b8db83f1d0e93914126041962af61034ab44c4a5"
+
+[[package]]
+name = "aligned"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eb1ce8b3382016136ab1d31a1b5ce807144f8b7eb2d5f16b2108f0f07edceb94"
@@ -40,11 +46,23 @@ dependencies = [
 
 [[package]]
 name = "cortex-m"
+version = "0.5.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c0b159a1e8306949579de3698c841dba58058197b65c60807194e4fa1e7a554"
+dependencies = [
+ "aligned 0.2.0",
+ "bare-metal",
+ "cortex-m 0.6.2",
+ "volatile-register",
+]
+
+[[package]]
+name = "cortex-m"
 version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2954942fbbdd49996704e6f048ce57567c3e1a4e2dc59b41ae9fde06a01fc763"
 dependencies = [
- "aligned",
+ "aligned 0.3.2",
  "bare-metal",
  "volatile-register",
 ]
@@ -76,7 +94,7 @@ version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "113ef0ecffee2b62b58f9380f4469099b30e9f9cbee2804771b4203ba1762cfa"
 dependencies = [
- "cortex-m",
+ "cortex-m 0.6.2",
 ]
 
 [[package]]
@@ -164,7 +182,7 @@ version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c03864ac862876c16a308f5286f4aa217f1a69ac45df87ad3cd2847f818a642c"
 dependencies = [
- "cortex-m",
+ "cortex-m 0.6.2",
  "cortex-m-semihosting",
 ]
 
@@ -196,7 +214,7 @@ checksum = "e2a38df5b15c8d5c7e8654189744d8e396bddc18ad48041a500ce52d6948941f"
 name = "ribbon"
 version = "0.1.0"
 dependencies = [
- "cortex-m",
+ "cortex-m 0.6.2",
  "cortex-m-rt",
  "embedded-graphics",
  "embedded-hal",
@@ -247,6 +265,7 @@ version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed792a53f339088822c0cc9d6ebfb950752016a288dc96ed3e302e9592f18ab0"
 dependencies = [
+ "cortex-m 0.5.10",
  "embedded-hal",
 ]
 
@@ -263,7 +282,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "afd24d6620b9427cd9e687e0d1d535c7cf84466f4d59ba766095c8b9d3b28c03"
 dependencies = [
  "bare-metal",
- "cortex-m",
+ "cortex-m 0.6.2",
  "cortex-m-rt",
  "vcell",
 ]
@@ -275,7 +294,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ea59cd72d6919a9ff5dca052131a88acdec245eb2b82b28a929f4829eaaeb34a"
 dependencies = [
  "cast",
- "cortex-m",
+ "cortex-m 0.6.2",
  "cortex-m-rt",
  "embedded-hal",
  "nb",
