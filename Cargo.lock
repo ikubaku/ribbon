@@ -203,6 +203,7 @@ dependencies = [
  "infrared",
  "panic-semihosting",
  "sh1106",
+ "shared-bus",
  "stm32f1xx-hal",
 ]
 
@@ -237,6 +238,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f4fda3b6246aaf55a83528e0708a8d89b2f5b16c30a083990f9af0d9217597f"
 dependencies = [
  "embedded-graphics",
+ "embedded-hal",
+]
+
+[[package]]
+name = "shared-bus"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed792a53f339088822c0cc9d6ebfb950752016a288dc96ed3e302e9592f18ab0"
+dependencies = [
  "embedded-hal",
 ]
 
