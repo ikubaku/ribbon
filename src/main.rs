@@ -14,6 +14,8 @@ use hal::prelude::*;
 use hal::stm32;
 use hal::i2c::{BlockingI2c, DutyCycle, Mode};
 
+use shared_bus::CortexMBusManager;
+
 use sh1106::prelude::*;
 use sh1106::Builder;
 
@@ -52,8 +54,10 @@ fn main() -> ! {
         1000,
     );
 
-    let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(i2c).into();
-    let mut rtc: At8563<_> = At8563::new(i2c);
+    let manager = CortexMBusManager::new(i2c);
+
+    let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(manager.acquire()).into();
+    let mut rtc: At8563<_> = At8563::new(manager.acquire());
 
     disp.init().unwrap();
     disp.flush().unwrap();
