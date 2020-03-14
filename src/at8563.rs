@@ -12,7 +12,7 @@ where I2C: Write + Read,
     pub fn new(i2c: I2C) -> At8563<I2C> {
         At8563 {
             i2c: i2c,
-            addr: 0xA2,
+            addr: 0x51,
         }
     }
 
