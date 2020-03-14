@@ -30,3 +30,6 @@ fabric.properties
 
 # Non-free code
 src/bk1080.rs
+
+# Logs
+openocd*.log
