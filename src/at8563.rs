@@ -16,9 +16,19 @@ where I2C: Write + Read,
         }
     }
 
+    fn send_data(&mut self, payload: &[u8]) {
+        self.i2c.write(self.addr, &payload).unwrap_or_else(|err| panic!("AT8563: Driver fatal error: {:#?}", err));
+    }
+
     pub fn init(&mut self) {
         let payload = [0x02, 0x00] as [u8; 2];
 
-        self.i2c.write(self.addr, &payload).unwrap_or_else(|err| panic!("AT8563: Driver fatal error: {:#?}", err));
+        self.send_data(&payload);
+    }
+
+    pub fn enable_clkout(&mut self) {
+        let payload = [0x0D, 0x80] as [u8; 2];
+
+        self.send_data(&payload);
     }
 }
