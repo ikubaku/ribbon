@@ -22,6 +22,9 @@ use sh1106::Builder;
 mod at8563;
 use at8563::At8563;
 
+mod bk1080;
+use bk1080::Bk1080;
+
 #[entry]
 fn main() -> ! {
     let dp = stm32::Peripherals::take().unwrap();
@@ -57,13 +60,17 @@ fn main() -> ! {
     let manager = CortexMBusManager::new(i2c);
 
     let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(manager.acquire()).into();
-    let mut rtc: At8563<_> = At8563::new(manager.acquire());
+    let mut rtc: At8563<_> = At8563::new(manager.acquire()).into();
+    let mut tuner: Bk1080<_> = Bk1080::new(manager.acquire()).into();
+
+    disp.init().unwrap();
+    disp.flush().unwrap();
 
     rtc.init();
     rtc.enable_clkout();
 
-    disp.init().unwrap();
-    disp.flush().unwrap();
+    tuner.init();
+    tuner.start_seeking(760);
 
     disp.draw(
         Font6x8::render_str("Hello, world!")
@@ -80,4 +87,6 @@ fn main() -> ! {
 #[exception]
 fn HardFault(ef: &ExceptionFrame) -> ! {
     panic!("FATAL: HardFault: {:#?}", ef);
+
+    loop {}
 }
