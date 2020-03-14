@@ -27,3 +27,6 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# Non-free code
+src/bk1080.rs
