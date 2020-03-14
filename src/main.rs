@@ -59,6 +59,9 @@ fn main() -> ! {
     let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(manager.acquire()).into();
     let mut rtc: At8563<_> = At8563::new(manager.acquire());
 
+    rtc.init();
+    rtc.enable_clkout();
+
     disp.init().unwrap();
     disp.flush().unwrap();
 
