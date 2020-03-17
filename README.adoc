@@ -1,0 +1,56 @@
+= ribbon
+
+A FM wide-band radio powered by STM32F1xx MCUs and Rust
+
+== Tested boards
+* https://www.st.com/en/evaluation-tools/nucleo-f103rb.html[STMicroelectronics NUCLEO-F103RB]
+
+== Pin assignment
+|===
+|PB8 |I2C1 SCL
+|PB9 |I2C1 SDA
+|===
+
+== Peripherals
+=== I2C bus
+* https://www.aitendo.com/product/18940[1.3" 128x64 OLED display]
+* https://www.aitendo.com/product/18401[AT8563 Real Time Clock]
+* https://www.aitendo.com/product/16357[BK1080VB FM Receiver]
+
+== Usage
+. Wire components together
+. Download firmware to the board
+. Power up the curcuit to receive the broadcast at 83.5MHz
+
+== Development / build from source
+=== Prerequisite
+* Rust stable with thumbv7m-none-eabi toolchain
+* openocd (Optional)
+* arm-none-eabi-objcopy (Optional)
+* Any shell (bash is requred for debugging(needs checking))
+
+=== Build
+[source, shell]
+----
+# Debug build
+$ cargo build
+
+# Debug on the attached board
+$ cargo run
+
+# Create the release firmware
+$ ./release.sh
+----
+
+== To Do
+* Do not panic in peripheral drivers but return results and errors using `Result`
+* Add the UI
+* Use the radio receivers with disclosed specifications
+* Implement clock
+* Create driver crates for used I2C peripherals
+* Implement register reading in BK1080 driver (requires the transactional I2C transmission feature that is to be implemented in depending crates)
+
+== License
+The source code is licensed under the MIT license. For more information see link:./LICENSE[LICENSE].
+
+Currently the BK1080 driver source is not on the repository due to possible licensing problems.
