@@ -70,7 +70,7 @@ fn main() -> ! {
     rtc.enable_clkout();
 
     tuner.init();
-    tuner.start_seeking(760);
+    tuner.start_tuning(835);
 
     disp.draw(
         Font6x8::render_str("Hello, world!")
