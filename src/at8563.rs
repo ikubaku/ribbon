@@ -17,7 +17,7 @@ where I2C: Write + Read,
     }
 
     fn send_data(&mut self, payload: &[u8]) {
-        self.i2c.write(self.addr, &payload).unwrap_or_else(|err| panic!("AT8563: Driver fatal error: {:#?}", err));
+        self.i2c.write(self.addr, payload).unwrap_or_else(|err| panic!("AT8563: Driver fatal error: {:#?}", err));
     }
 
     pub fn init(&mut self) {
