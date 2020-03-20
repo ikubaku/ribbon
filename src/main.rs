@@ -24,6 +24,9 @@ use at8563::At8563;
 
 mod bk1080;
 use bk1080::Bk1080;
+use crate::tea5767::Tea5767;
+
+mod tea5767;
 
 #[entry]
 fn main() -> ! {
@@ -61,7 +64,8 @@ fn main() -> ! {
 
     let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(manager.acquire()).into();
     let mut rtc: At8563<_> = At8563::new(manager.acquire()).into();
-    let mut tuner: Bk1080<_> = Bk1080::new(manager.acquire()).into();
+    //let mut tuner: Bk1080<_> = Bk1080::new(manager.acquire()).into();
+    let mut tuner: Tea5767<_> = Tea5767::new(manager.acquire()).into();
 
     disp.init().unwrap();
     disp.flush().unwrap();
@@ -69,6 +73,8 @@ fn main() -> ! {
     rtc.init();
     rtc.enable_clkout();
 
+    //tuner.init();
+    //tuner.start_tuning(835);
     tuner.init();
     tuner.start_tuning(835);
 
