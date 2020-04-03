@@ -11,7 +11,7 @@ cortex-m = "0.6.0"
 cortex-m-rt = "0.6.8"
 panic-semihosting = "0.5.2"
 embedded-hal = { version = "0.2.3", features = [ "unproven" ] }
-stm32f1xx-hal = { version = "0.3.0", features = [ "rt", "stm32f103" ] }
+stm32f1xx-hal = { version = "0.5.3", features = [ "rt", "stm32f103" ] }
 shared-bus = { version = "0.1.4", features = [ "cortexm" ] }
 embedded-graphics = "0.4.9"
 sh1106 = "0.2.0"
