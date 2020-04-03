@@ -14,7 +14,7 @@ A FM wide-band radio powered by STM32F1xx MCUs and Rust
 |PB5 |Frequency Up
 |===
 
-== Peripherals
+== Parts
 === I2C bus
 * https://www.aitendo.com/product/18940[1.3" 128x64 OLED display]
 * https://www.aitendo.com/product/18401[AT8563 Real Time Clock]
