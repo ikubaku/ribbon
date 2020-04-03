@@ -10,6 +10,8 @@ use cortex_m_rt::{ExceptionFrame, exception, entry};
 use embedded_graphics::prelude::*;
 use embedded_graphics::fonts::Font6x8;
 
+use embedded_hal::digital::v2::InputPin;
+
 use hal::prelude::*;
 use hal::stm32;
 use hal::i2c::{BlockingI2c, DutyCycle, Mode};
@@ -55,7 +57,7 @@ fn main() -> ! {
         (scl, sda),
         &mut afio.mapr,
         Mode::Fast {
-            frequency: 100_000,
+            frequency: 100_000.hz(),
             duty_cycle: DutyCycle::Ratio2to1,
         },
         clocks,
@@ -94,11 +96,11 @@ fn main() -> ! {
     loop {
         let mut is_freq_changed = false;
 
-        if btn0.is_low() {
+        if btn0.is_low().unwrap() {
             freq -= 1;
             is_freq_changed = true;
         }
-        if btn1.is_low() {
+        if btn1.is_low().unwrap() {
             freq += 1;
             is_freq_changed = true;
         }
