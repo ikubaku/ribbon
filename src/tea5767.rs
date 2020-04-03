@@ -39,14 +39,8 @@ where I2C: Read + Write,
     pub fn start_tuning(&mut self, freq: u16) {
         let pll_val = 4 * (freq as i32 * 100 - 225) / 32768 * 1000;
         let pll_val = pll_val as u16;
-        let mut buf: [u8; 5] = [0; 5];
+        let payload: [u8; 5] = [(0x3F & (pll_val >> 8)) as u8, (0xFF & pll_val) as u8, INIT_DATA[2], INIT_DATA[3], INIT_DATA[4]];
 
-        self.read_all(&mut buf);
-
-        buf[0] = 0xC0 & buf[0];
-        buf[0] |= (0x3F & (pll_val >> 8)) as u8;
-        buf[1] = (0xFF & pll_val) as u8;
-
-        self.write_all(&buf);
+        self.write_all(&payload);
     }
 }
