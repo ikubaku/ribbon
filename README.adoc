@@ -4,6 +4,7 @@ A FM wide-band radio powered by STM32F1xx MCUs and Rust
 
 == Tested boards
 * https://www.st.com/en/evaluation-tools/nucleo-f103rb.html[STMicroelectronics NUCLEO-F103RB]
+* The "Bluepill" compatible boards(STM32F103C8T6). Requires release build.
 
 == Pin assignment
 |===
