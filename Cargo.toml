@@ -16,3 +16,4 @@ shared-bus = { versioo = "0.1.4", features = [ "cortexm" ] }
 embedded-graphics = "0.4.9"
 sh1106 = "0.2.0"
 infrared = "0.6.0"
+arrayvec = { version = "0.5.1", default-features = false, features = [] }
