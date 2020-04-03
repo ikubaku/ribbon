@@ -9,6 +9,8 @@ A FM wide-band radio powered by STM32F1xx MCUs and Rust
 |===
 |PB8 |I2C1 SCL
 |PB9 |I2C1 SDA
+|PB10 |Frequency Down
+|PB5 |Frequency Up
 |===
 
 == Peripherals
