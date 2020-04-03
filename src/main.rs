@@ -16,6 +16,8 @@ use hal::i2c::{BlockingI2c, DutyCycle, Mode};
 
 use shared_bus::CortexMBusManager;
 
+use arrayvec::ArrayString;
+
 use sh1106::prelude::*;
 use sh1106::Builder;
 
@@ -24,10 +26,7 @@ use at8563::At8563;
 
 mod bk1080;
 use bk1080::Bk1080;
-use crate::tea5767::Tea5767;
-use arrayvec::ArrayString;
 
-mod tea5767;
 
 #[entry]
 fn main() -> ! {
@@ -72,7 +71,6 @@ fn main() -> ! {
     let mut disp: GraphicsMode<_> = Builder::new().connect_i2c(manager.acquire()).into();
     let mut rtc: At8563<_> = At8563::new(manager.acquire()).into();
     let mut tuner: Bk1080<_> = Bk1080::new(manager.acquire()).into();
-    //let mut tuner: Tea5767<_> = Tea5767::new(manager.acquire()).into();
 
     disp.init().unwrap();
     disp.flush().unwrap();
@@ -133,6 +131,4 @@ fn main() -> ! {
 #[exception]
 fn HardFault(ef: &ExceptionFrame) -> ! {
     panic!("FATAL: HardFault: {:#?}", ef);
-
-    loop {}
 }
